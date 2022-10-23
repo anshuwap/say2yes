@@ -23,20 +23,20 @@ class WebViewApp extends StatefulWidget {
 }
 
 late WebViewController controllerGlobal;
-
-Future<bool> _exitApp(BuildContext context) async {
-  if (await controllerGlobal.canGoBack()) {
-    print("onwill goback");
-    controllerGlobal.goBack();
-    return Future.value(true);
-  } else {
-    // Scaffold.of(context).showSnackBar(
-    //   const SnackBar(content: Text("No back history item")),
-    // );
-    print("onwill error");
-    return Future.value(false);
-  }
-}
+//
+// Future<bool> _exitApp(BuildContext context) async {
+//   if (await controllerGlobal.canGoBack()) {
+//     print("onwill goback");
+//     controllerGlobal.goBack();
+//     return Future.value(true);
+//   } else {
+//     // Scaffold.of(context).showSnackBar(
+//     //   const SnackBar(content: Text("No back history item")),
+//     // );
+//     print("onwill error");
+//     return Future.value(false);
+//   }
+// }
 
 class _WebViewAppState extends State<WebViewApp> {
   final controller = Completer<WebViewController>();
@@ -44,7 +44,20 @@ class _WebViewAppState extends State<WebViewApp> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _exitApp(context),
+      onWillPop: () async {
+        final messenger = ScaffoldMessenger.of(context);
+        if (await controllerGlobal.canGoBack()) {
+          await controllerGlobal.goBack();
+        } else {
+          messenger.showSnackBar(
+            const SnackBar(content: Text('No back history item')),
+          );
+          return false;
+        }
+        print('The user tries to pop()');
+        return false;
+      },
+      // onWillPop: () => _exitApp(context),
       child: Scaffold(
         backgroundColor: const Color(0xffF0F4FF),
         appBar: PreferredSize(
