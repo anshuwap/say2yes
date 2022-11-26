@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:webview/activity/new_splash_screen.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
-import 'src/menu.dart';
-import 'src/navigation_controls.dart';
-import 'src/web_view_stack.dart';
 
 void main() {
   runApp(
@@ -23,20 +20,6 @@ class WebViewApp extends StatefulWidget {
 }
 
 late WebViewController controllerGlobal;
-//
-// Future<bool> _exitApp(BuildContext context) async {
-//   if (await controllerGlobal.canGoBack()) {
-//     print("onwill goback");
-//     controllerGlobal.goBack();
-//     return Future.value(true);
-//   } else {
-//     // Scaffold.of(context).showSnackBar(
-//     //   const SnackBar(content: Text("No back history item")),
-//     // );
-//     print("onwill error");
-//     return Future.value(false);
-//   }
-// }
 
 class _WebViewAppState extends State<WebViewApp> {
   final controller = Completer<WebViewController>();
@@ -70,7 +53,8 @@ class _WebViewAppState extends State<WebViewApp> {
               // ],
             ),
         ),
-        body: WebViewStack(controller: controller),
+        // body: WebViewStack(controller: controller),
+        body: SplashScreen(),
       ),
     );
   }
