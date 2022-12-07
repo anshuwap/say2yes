@@ -63,6 +63,7 @@ class WalkThroughScreenState extends State<WalkThroughScreen> {
   }
 
   Future<void> onSkip() async {
+    // setValues(IS_FIRST_TIME, false);
     setValue(IS_FIRST_TIME, false);
     WebViewStack(controller: controller).launch(context, isNewTask: true);
   }

@@ -11,7 +11,6 @@ import 'package:webview/utils/app_widget.dart';
 import 'package:webview/utils/images.dart';
 import 'package:webview/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../src/web_view_stack.dart';
 import 'NoInternetConnection.dart';
 
@@ -84,6 +83,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future checkFirstSeen() async {
     appConfiguration(context);
+    // getSharedPref();
+    // setValue(IS_FIRST_TIME, true);
+    // bool isFirstTime = getBool(IS_FIRST_TIME) as bool;
     // bool isFirstTime = getBoolAsync(IS_FIRST_TIME, defaultValue: true);
     bool isFirstTime =true;
     if (isFirstTime) {
