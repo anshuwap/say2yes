@@ -79,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-
+  //
 
   Future checkFirstSeen() async {
     appConfiguration(context);
