@@ -26,6 +26,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   bool isWasConnectionLoss = false;
   bool mIsLoading = false;
+  bool isFirstTime = true;
   final controller = Completer<WebViewController>();
   @override
   void initState() {
@@ -82,12 +83,23 @@ class _SplashScreenState extends State<SplashScreen> {
   //
 
   Future checkFirstSeen() async {
+    SharedPreferences prf = await SharedPreferences.getInstance();
     appConfiguration(context);
     // getSharedPref();
     // setValue(IS_FIRST_TIME, true);
     // bool isFirstTime = getBool(IS_FIRST_TIME) as bool;
-    // bool isFirstTime = getBoolAsync(IS_FIRST_TIME, defaultValue: true);
-    bool isFirstTime =true;
+    // prf.setBool(IS_FIRST_TIME, false);
+try {
+  isFirstTime = prf.getBool(IS_FIRST_TIME)!;
+}catch(e){
+  isFirstTime=true;
+}
+    print(isFirstTime);
+    print(isFirstTime);
+    print(isFirstTime);
+    print(isFirstTime);
+    // getBoolAsync(IS_FIRST_TIME, defaultValue: true);
+    // bool isFirstTime =true;
     if (isFirstTime) {
 
       if (isWasConnectionLoss == true) {

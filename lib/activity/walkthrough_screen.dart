@@ -57,14 +57,17 @@ class WalkThroughScreenState extends State<WalkThroughScreen> {
       currentIndexPage = currentIndexPage + 1;
       _controller.jumpToPage(currentIndexPage);
     } else {
-      setValue(IS_FIRST_TIME, false);
+      SharedPreferences prf = await SharedPreferences.getInstance();
+      prf.setBool(IS_FIRST_TIME, false);
+      // setValue(IS_FIRST_TIME, false);
       WebViewStack(controller: controller).launch(context, isNewTask: true);
     }
   }
 
   Future<void> onSkip() async {
-    // setValues(IS_FIRST_TIME, false);
-    setValue(IS_FIRST_TIME, false);
+    SharedPreferences prf = await SharedPreferences.getInstance();
+    prf.setBool(IS_FIRST_TIME, false);
+    // setValue(IS_FIRST_TIME, false);
     WebViewStack(controller: controller).launch(context, isNewTask: true);
   }
 
